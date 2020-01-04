@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="ASUM_PIC">
+    <file>ASUM-brain.png</file>
+    <file>brain.png</file>
+    <file>ASUM_title_short.png</file>
+    <file>ASUM-TITLE-short.png</file>
+  </qresource>
+</RCC>

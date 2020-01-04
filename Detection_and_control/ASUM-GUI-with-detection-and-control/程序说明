@@ -1,0 +1,5 @@
+运行main-asum-gui-final.py文件即可打开ASUM的图形用户界面。
+运行方法：
+1. 终端输入“source activate pytorch0.40”;
+2. 将ASUM装置上的USB串口与电脑USB口连接;
+3. 终端输入“python /home/lwz/QTexample/ASUM-GUI-with-detection-and-control/main-asum-gui-final.py”
