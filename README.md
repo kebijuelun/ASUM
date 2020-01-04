@@ -17,7 +17,12 @@ The repo includes comprehensive open source files of ASUM
 ### GUI of ASUM
 ![alt](./show_pics/GUI1.png)
 
-![alt](./show_pics/GUI2.png)
+<p align="center">
+	<img src="./show_pics/GUI2.png" alt="Sample"  width="250" >
+	<p align="center">
+		<em>图片示例2</em>
+	</p>
+</p>
 
 
 
