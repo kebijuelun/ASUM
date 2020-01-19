@@ -7,7 +7,9 @@ The repo includes comprehensive open source files of ASUM
 ----
 
 ## Mechanical design drawings of ASUM
-![alt](./show_pics/ASUM_mecha.png)
+<!-- ![alt](./show_pics/ASUM_mecha.png) -->
+<img src="./show_pics/ASUM_mecha.png" width="600px">
+
 
 
 ----
