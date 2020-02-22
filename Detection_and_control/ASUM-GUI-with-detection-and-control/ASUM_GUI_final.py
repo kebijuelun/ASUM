@@ -8,11 +8,14 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 class Ui_MainWindowASUM(object):
     def setupUi(self, MainWindowASUM):
         MainWindowASUM.setObjectName("MainWindowASUM")
         MainWindowASUM.resize(963, 703)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindowASUM.sizePolicy().hasHeightForWidth())
@@ -160,7 +163,10 @@ class Ui_MainWindowASUM(object):
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName("gridLayout")
         self.image_label = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding,
+            QtWidgets.QSizePolicy.MinimumExpanding,
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.image_label.sizePolicy().hasHeightForWidth())
@@ -318,7 +324,9 @@ class Ui_MainWindowASUM(object):
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.groupBox_2)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
         self.camera_start = QtWidgets.QPushButton(self.groupBox_2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.camera_start.sizePolicy().hasHeightForWidth())
@@ -341,7 +349,9 @@ class Ui_MainWindowASUM(object):
         self.verticalLayout_3 = QtWidgets.QVBoxLayout()
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.checkBox = QtWidgets.QCheckBox(self.groupBox)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.checkBox.sizePolicy().hasHeightForWidth())
@@ -353,7 +363,9 @@ class Ui_MainWindowASUM(object):
         self.checkBox.setObjectName("checkBox")
         self.verticalLayout_3.addWidget(self.checkBox)
         self.buttonBox = QtWidgets.QDialogButtonBox(self.groupBox)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(
+            QtWidgets.QDialogButtonBox.Cancel | QtWidgets.QDialogButtonBox.Ok
+        )
         self.buttonBox.setObjectName("buttonBox")
         self.verticalLayout_3.addWidget(self.buttonBox)
         self.verticalLayout_6.addLayout(self.verticalLayout_3)
@@ -370,7 +382,9 @@ class Ui_MainWindowASUM(object):
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.label = QtWidgets.QLabel(self.groupBox_3)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
@@ -383,10 +397,14 @@ class Ui_MainWindowASUM(object):
         self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
         self.spinBox_motor_speed = QtWidgets.QSpinBox(self.groupBox_3)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.spinBox_motor_speed.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.spinBox_motor_speed.sizePolicy().hasHeightForWidth()
+        )
         self.spinBox_motor_speed.setSizePolicy(sizePolicy)
         self.spinBox_motor_speed.setMinimumSize(QtCore.QSize(0, 30))
         self.spinBox_motor_speed.setMaximumSize(QtCore.QSize(16777215, 30))
@@ -395,7 +413,9 @@ class Ui_MainWindowASUM(object):
         self.spinBox_motor_speed.setObjectName("spinBox_motor_speed")
         self.horizontalLayout.addWidget(self.spinBox_motor_speed)
         self.label_3 = QtWidgets.QLabel(self.groupBox_3)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
@@ -414,10 +434,14 @@ class Ui_MainWindowASUM(object):
         self.verticalLayout.setContentsMargins(-1, -1, -1, 0)
         self.verticalLayout.setObjectName("verticalLayout")
         self.Slider_motorcontrol = QtWidgets.QSlider(self.groupBox_3)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.Slider_motorcontrol.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.Slider_motorcontrol.sizePolicy().hasHeightForWidth()
+        )
         self.Slider_motorcontrol.setSizePolicy(sizePolicy)
         self.Slider_motorcontrol.setMaximumSize(QtCore.QSize(16777215, 20))
         font = QtGui.QFont()
@@ -442,7 +466,9 @@ class Ui_MainWindowASUM(object):
         self.horizontalLayout_2.setContentsMargins(-1, 0, -1, 0)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.label_2 = QtWidgets.QLabel(self.groupBox_4)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
@@ -454,7 +480,9 @@ class Ui_MainWindowASUM(object):
         self.label_2.setObjectName("label_2")
         self.horizontalLayout_2.addWidget(self.label_2)
         self.lcdNumber = QtWidgets.QLCDNumber(self.groupBox_4)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lcdNumber.sizePolicy().hasHeightForWidth())
@@ -463,7 +491,9 @@ class Ui_MainWindowASUM(object):
         self.lcdNumber.setObjectName("lcdNumber")
         self.horizontalLayout_2.addWidget(self.lcdNumber)
         self.label_4 = QtWidgets.QLabel(self.groupBox_4)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
@@ -478,7 +508,9 @@ class Ui_MainWindowASUM(object):
         self.verticalLayout_9.addWidget(self.groupBox_4)
         self.gridLayout.addLayout(self.verticalLayout_9, 1, 1, 1, 1)
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
@@ -502,8 +534,12 @@ class Ui_MainWindowASUM(object):
         self.actionclose.setObjectName("actionclose")
 
         self.retranslateUi(MainWindowASUM)
-        self.spinBox_motor_speed.valueChanged['int'].connect(self.Slider_motorcontrol.setValue)
-        self.Slider_motorcontrol.valueChanged['int'].connect(self.spinBox_motor_speed.setValue)
+        self.spinBox_motor_speed.valueChanged["int"].connect(
+            self.Slider_motorcontrol.setValue
+        )
+        self.Slider_motorcontrol.valueChanged["int"].connect(
+            self.spinBox_motor_speed.setValue
+        )
         # self.spinBox_motor_speed.valueChanged['int'].connect(self.lcdNumber.display)
         self.buttonBox.accepted.connect(self.checkBox.click)
         self.buttonBox.rejected.connect(self.checkBox.click)
@@ -515,7 +551,9 @@ class Ui_MainWindowASUM(object):
         self.groupBox_2.setTitle(_translate("MainWindowASUM", "Microscope CCD Camera"))
         self.camera_start.setText(_translate("MainWindowASUM", "Start Camera"))
         self.groupBox.setTitle(_translate("MainWindowASUM", "Close-loop Control Mode"))
-        self.checkBox.setText(_translate("MainWindowASUM", "Automatic Colletction Mode"))
+        self.checkBox.setText(
+            _translate("MainWindowASUM", "Automatic Colletction Mode")
+        )
         self.groupBox_3.setTitle(_translate("MainWindowASUM", "Open-loop Control Mode"))
         self.label.setText(_translate("MainWindowASUM", "Motor Speed:"))
         self.label_3.setText(_translate("MainWindowASUM", "r/min"))
@@ -524,5 +562,6 @@ class Ui_MainWindowASUM(object):
         self.label_4.setText(_translate("MainWindowASUM", "r/min"))
         self.actionstart.setText(_translate("MainWindowASUM", "start"))
         self.actionclose.setText(_translate("MainWindowASUM", "close"))
+
 
 import asum_pic_rc

@@ -11,11 +11,10 @@ import serial
 
 ser = serial.Serial("/dev/ttyUSB0", 9600, timeout=0.5)  # 使用USB连接串行口
 
-parser = argparse.ArgumentParser(description="Single Shot MultiBox Detection")
+parser = argparse.ArgumentParser(description="SSD pretrained detection model for ASUM")
 parser.add_argument(
     "--weights",
-    # default='../weights/ssd300_mAP_77.43_v2.pth',
-    default="/home/lwz/object_detection/ssd_sliecs.pytorch/weights/originalSSD_slices/SSD_final_VOC_map_0.9696_sliceAP_0.9089.pth",
+    default="./models/SSD_sections_det.pth",
     type=str,
     help="Trained state_dict file path",
 )
@@ -190,22 +189,16 @@ def cv2_demo(net, transform):
     # start video stream thread, allow buffer to fill
     print("[INFO] starting threaded video stream...")
     stream = WebcamVideoStream(src=0).start()  # default camera
-
-    # read video for detection
-    # stream = cv2.VideoCapture("/home/lwz/data/videos/slices7_cut.avi")
-    # stream = cv2.VideoCapture("/home/lwz/data/videos/slices7_cut.avi")
     frame_width = int(1024)
     frame_height = int(768)
 
     # save the detected vedio
-    # ori_out = cv2.VideoWriter('/home/lwz/object_detection/ssd.pytorch/out_original.avi', cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'), 35, (frame_width, frame_height))
-    # ori_out = cv2.VideoWriter('/media/lwz/BCF60E29F60DE50C/out_original_real_experiment_final1.avi', cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'), 35, (frame_width, frame_height))
-    det_out = cv2.VideoWriter(
-        "/media/lwz/BCF60E29F60DE50C/20190321-out_det_real_experiment-final_automotorspeed-slice800nm-newknife.avi",
-        cv2.VideoWriter_fourcc("M", "J", "P", "G"),
-        35,
-        (frame_width, frame_height),
-    )
+    # det_out = cv2.VideoWriter(
+    #     "/media/lwz/BCF60E29F60DE50C/20190321-out_det_real_experiment-final_automotorspeed-slice800nm-newknife.avi",
+    #     cv2.VideoWriter_fourcc("M", "J", "P", "G"),
+    #     35,
+    #     (frame_width, frame_height),
+    # )
 
     time.sleep(1.0)
     # start fps timer
@@ -229,14 +222,10 @@ def cv2_demo(net, transform):
 
         det_frame = predict(frame)
 
-        det_out.write(det_frame)
+        # det_out.write(det_frame)
         end_time = time.time()
         current_fps = 1 / (end_time - start_time)
         print("[INFO] current. FPS: {:.2f}".format(current_fps))
-        # show current FPS on screen
-
-        # cv2.putText(frame, "FPS: {:.2f}".format(current_fps), (10, 30), 1, 2,
-        #             (125, 100, 150), 2)
 
         # keybindings for display
         if key == ord("p"):  # pause
@@ -277,22 +266,8 @@ if __name__ == "__main__":
     reduction_ratio = 256  # reduction ratio of motor reducer
     d_rightbaffle = 10  # length of right baffle
     speed_gain = 4
-    # time_through_rightbaffle = 30       # time for slices go through the right baffle
-    # motor_speed = int(d_rightbaffle*reduction_ratio*60/r_wafer/(2*pi)/time_through_rightbaffle)
 
     net = build_ssd("test", 300, 4)  # initialize SSD
-    # if args.cuda:
-    #     net = torch.nn.DaBaseTransform(taParallel(net)
-    # cudnn.benchmark = True
-    # state_dict = torch.load(args.weights)
-    # from collections import OrderedDict
-    #
-    # new_state_dict = OrderedDict()
-    # for k, v in state_dict.items():
-    #     name = 'module.' + k  # remove `module.`
-    #     new_state_dict[name] = v
-    # net.load_state_dict(new_state_dict)
-    # net.load_state_dict({k.replace('module.', ''): v for k, v in torch.load(args.weights)['state_dict'].items()})
     net.load_state_dict(torch.load(args.weights))
     # net.load_state_dict(torch.load(args.weights,map_location='cuda'))
     transform = BaseTransform(net.size, (104 / 256.0, 117 / 256.0, 123 / 256.0))
