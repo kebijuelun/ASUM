@@ -32,21 +32,21 @@ This repository contains the comprehensive release files of the ASUM:
 Currently this repo is compatible with ubuntu16.04/ubuntu18.04, Python 3, PyQt5.
 
 ### Running tutorial
-- Environment configuration (for ubuntu OS)
+#### 1. Environment configuration (for ubuntu OS)
 ```
 pip install -r requirements.txt
 ```
 
-- Download Pre-trained Model
+#### 2. Download Pre-trained Model
   - Download address: [Pre-trained SSD detection model for brain sections](https://drive.google.com/file/d/1bxM01SwDm1i7HxVM0AG3kzNZ3eUrKP-M/view?usp=sharing)
   - Put the pre-trained model as `./Detection_and_control/ASUM-GUI-with-detection-and-control/models/SSD_sections_det.pth`
 
-- Make sure the ASUM is installed successfully on the Ultra-microtome
+#### 3. Make sure the ASUM is installed successfully on the Ultra-microtome
   - make sure the serial port communication authority of the host is provided
   - make sure the electric motor has been successfully connected to computer
   - make sure that the CCD camera has been successfully connected to computer
 
-- Run GUI 
+#### 4. Run GUI 
 
 (Normal mode: run with normal mode when there is an installed ASUM device)
 ```
