@@ -6,22 +6,25 @@ import time
 from imutils.video import FPS, WebcamVideoStream
 import argparse
 
-parser = argparse.ArgumentParser(description='Single Shot MultiBox Detection')
-parser.add_argument('--weights',
-                    # default='../weights/ssd300_mAP_77.43_v2.pth',
-                    default='/home/lwz/object_detection/ssd_sliecs.pytorch/weights/ssd300_mAP_77.43_v2.pth',
-                    type=str, help='Trained state_dict file path')
-parser.add_argument('--cuda', default=True, type=bool,
-                    help='Use cuda in live demo')
+parser = argparse.ArgumentParser(description="Single Shot MultiBox Detection")
+parser.add_argument(
+    "--weights",
+    # default='../weights/ssd300_mAP_77.43_v2.pth',
+    default="/home/lwz/object_detection/ssd_sliecs.pytorch/weights/ssd300_mAP_77.43_v2.pth",
+    type=str,
+    help="Trained state_dict file path",
+)
+parser.add_argument("--cuda", default=True, type=bool, help="Use cuda in live demo")
 args = parser.parse_args()
 
 COLORS = [(255, 0, 0), (0, 255, 0), (0, 0, 255)]
 FONT = cv2.FONT_HERSHEY_SIMPLEX
 
 if args.cuda and torch.cuda.is_available():
-    torch.set_default_tensor_type('torch.cuda.FloatTensor')
+    torch.set_default_tensor_type("torch.cuda.FloatTensor")
 else:
-    torch.set_default_tensor_type('torch.FloatTensor')
+    torch.set_default_tensor_type("torch.FloatTensor")
+
 
 def cv2_demo(net, transform):
     def predict(frame):
@@ -43,12 +46,23 @@ def cv2_demo(net, transform):
             j = 0
             while detections[0, i, j, 0] >= 0.6:
                 pt = (detections[0, i, j, 1:] * scale).cpu().numpy()
-                cv2.rectangle(frame,
-                              (int(pt[0]), int(pt[1])),
-                              (int(pt[2]), int(pt[3])),
-                              COLORS[i % 3], 2)
-                cv2.putText(frame, labelmap[i - 1], (int(pt[0]), int(pt[1])-10),
-                            FONT, 1, (255, 255, 255), 2, cv2.LINE_AA)
+                cv2.rectangle(
+                    frame,
+                    (int(pt[0]), int(pt[1])),
+                    (int(pt[2]), int(pt[3])),
+                    COLORS[i % 3],
+                    2,
+                )
+                cv2.putText(
+                    frame,
+                    labelmap[i - 1],
+                    (int(pt[0]), int(pt[1]) - 10),
+                    FONT,
+                    1,
+                    (255, 255, 255),
+                    2,
+                    cv2.LINE_AA,
+                )
                 j += 1
         return frame
 
@@ -70,7 +84,7 @@ def cv2_demo(net, transform):
 
         frame = predict(frame)
         end_time = time.time()
-        current_fps = 1/(end_time - start_time)
+        current_fps = 1 / (end_time - start_time)
         print("[INFO] current. FPS: {:.2f}".format(current_fps))
         # show current FPS on screen
 
@@ -78,30 +92,31 @@ def cv2_demo(net, transform):
         #             (125, 100, 150), 2)
 
         # keybindings for display
-        if key == ord('p'):  # pause
+        if key == ord("p"):  # pause
             while True:
-                key2 = cv2.waitKey(1) or 0xff
-                cv2.imshow('frame', frame)
-                if key2 == ord('p'):  # resume
+                key2 = cv2.waitKey(1) or 0xFF
+                cv2.imshow("frame", frame)
+                if key2 == ord("p"):  # resume
                     break
-        cv2.imshow('frame', frame)
+        cv2.imshow("frame", frame)
         if key == 27:  # exit
             stream.stop()
             break
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import sys
     from os import path
+
     sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 
     from data import BaseTransform, VOC_CLASSES as labelmap
     from ssd import build_ssd
 
-    net = build_ssd('test', 300, 21)    # initialize SSD
+    net = build_ssd("test", 300, 21)  # initialize SSD
     # if args.cuda:
     #     net = torch.nn.DataParallel(net)
-        # cudnn.benchmark = True
+    # cudnn.benchmark = True
     # state_dict = torch.load(args.weights)
     # from collections import OrderedDict
     #
@@ -113,8 +128,7 @@ if __name__ == '__main__':
     # net.load_state_dict({k.replace('module.', ''): v for k, v in torch.load(args.weights)['state_dict'].items()})
     net.load_state_dict(torch.load(args.weights))
     # net.load_state_dict(torch.load(args.weights,map_location='cuda'))
-    transform = BaseTransform(net.size, (104/256.0, 117/256.0, 123/256.0))
-
+    transform = BaseTransform(net.size, (104 / 256.0, 117 / 256.0, 123 / 256.0))
 
     if args.cuda:
         net = net.cuda()
@@ -130,7 +144,6 @@ if __name__ == '__main__':
     print("[INFO] approx. FPS: {:.2f}".format(fps.fps()))
 
     # cleanup
-
 
     cv2.destroyAllWindows()
     # stream.stop()
