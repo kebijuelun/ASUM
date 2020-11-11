@@ -31,9 +31,20 @@ class FocalLoss_decayweighted(nn.Module):
         See: https://arxiv.org/pdf/1512.02325.pdf for more details.
     """
 
-    def __init__(self, num_classes, overlap_thresh, prior_for_matching,
-                 bkg_label, neg_mining, neg_pos, neg_overlap, encode_target,
-                 use_gpu,alpha_focalloss, gamma_focalloss):
+    def __init__(
+        self,
+        num_classes,
+        overlap_thresh,
+        prior_for_matching,
+        bkg_label,
+        neg_mining,
+        neg_pos,
+        neg_overlap,
+        encode_target,
+        use_gpu,
+        alpha_focalloss,
+        gamma_focalloss,
+    ):
         super(FocalLoss_decayweighted, self).__init__()
         self.use_gpu = use_gpu
         self.num_classes = num_classes
@@ -44,9 +55,10 @@ class FocalLoss_decayweighted(nn.Module):
         self.do_neg_mining = neg_mining
         self.negpos_ratio = neg_pos
         self.neg_overlap = neg_overlap
-        self.variance = cfg['variance']
+        self.variance = cfg["variance"]
         self.alpha = Variable(torch.ones(self.num_classes, 1) * alpha_focalloss)
         self.gamma = gamma_focalloss
+
     def forward(self, predictions, targets, epoch, max_epoch):
         """Multibox Loss
         Args:
@@ -61,8 +73,8 @@ class FocalLoss_decayweighted(nn.Module):
         """
         loc_data, conf_data, priors = predictions
         num = loc_data.size(0)
-        priors = priors[:loc_data.size(1), :]
-        num_priors = (priors.size(0))
+        priors = priors[: loc_data.size(1), :]
+        num_priors = priors.size(0)
         num_classes = self.num_classes
 
         # match priors (default boxes) and ground truth boxes
@@ -72,8 +84,16 @@ class FocalLoss_decayweighted(nn.Module):
             truths = targets[idx][:, :-1].data
             labels = targets[idx][:, -1].data
             defaults = priors.data
-            match(self.threshold, truths, defaults, self.variance, labels,
-                  loc_t, conf_t, idx)
+            match(
+                self.threshold,
+                truths,
+                defaults,
+                self.variance,
+                labels,
+                loc_t,
+                conf_t,
+                idx,
+            )
         if self.use_gpu:
             loc_t = loc_t.cuda()
             conf_t = conf_t.cuda()
@@ -94,9 +114,9 @@ class FocalLoss_decayweighted(nn.Module):
         loss_l = loss_l.double()
 
         loss_l /= N
-        loss_c = self.focal_loss(conf_data.view(-1, self.num_classes), conf_t.view(-1, 1),epoch, max_epoch)
-
-
+        loss_c = self.focal_loss(
+            conf_data.view(-1, self.num_classes), conf_t.view(-1, 1), epoch, max_epoch
+        )
 
         # # Compute max conf across batch for hard negative mining
         # batch_conf = conf_data.view(-1, self.num_classes)
@@ -126,12 +146,10 @@ class FocalLoss_decayweighted(nn.Module):
         # loss_c /= N
         return loss_l, loss_c
 
-
-
     def focal_loss(self, inputs, targets, epoch, max_epoch):
-        '''Focal loss.
+        """Focal loss.
         mean of losses: L(x,c,l,g) = (Lconf(x, c) + αLloc(x,l,g)) / N
-        '''
+        """
         N = inputs.size(0)
         C = inputs.size(1)
         P = F.softmax(inputs)
@@ -139,7 +157,7 @@ class FocalLoss_decayweighted(nn.Module):
         class_mask = inputs.data.new(N, C).fill_(0)
         class_mask = Variable(class_mask)
         ids = targets.view(-1, 1)
-        class_mask.scatter_(1, ids.data, 1.)
+        class_mask.scatter_(1, ids.data, 1.0)
 
         if inputs.is_cuda and not self.alpha.is_cuda:
             self.alpha = self.alpha.cuda()
@@ -149,7 +167,11 @@ class FocalLoss_decayweighted(nn.Module):
         probs = (P * class_mask).sum(1).view(-1, 1)
         log_p = probs.log()
 
-        batch_loss = -alpha * (torch.pow((1 - probs), self.gamma * math.exp(-(epoch/max_epoch)))) * log_p
+        batch_loss = (
+            -alpha
+            * (torch.pow((1 - probs), self.gamma * math.exp(-(epoch / max_epoch))))
+            * log_p
+        )
 
         loss = batch_loss.mean()
         loss = loss.double()

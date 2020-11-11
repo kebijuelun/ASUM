@@ -22,21 +22,9 @@ import serial
 import time
 from data import BaseTransform, VOC_CLASSES as labelmap
 
-ser = serial.Serial("/dev/ttyUSB0", 9600, timeout=0.5)  # 使用USB连接串行口
-
-parser = argparse.ArgumentParser(description="Single Shot MultiBox Detection")
-parser.add_argument(
-    "--weights",
-    default="./models/SSD_sections_det.pth",
-    type=str,
-    help="Trained state_dict file path",
-)
-parser.add_argument("--cuda", default=True, type=bool, help="Use cuda in live demo")
-args = parser.parse_args()
-
 
 class MyWindow(QMainWindow, Ui_MainWindowASUM):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, debug=False):
         super(MyWindow, self).__init__(parent)
         self.setupUi(self)
 
@@ -73,6 +61,7 @@ class MyWindow(QMainWindow, Ui_MainWindowASUM):
 
         # global first_automated_process
         self.first_automated_process = True
+        self.debug = debug
 
     def serial_motor_control(self, value):
         motor_speed = value
@@ -90,7 +79,7 @@ class MyWindow(QMainWindow, Ui_MainWindowASUM):
             self.check_state = False
 
     def cv2_demo(self, net, transform, input_frame):
-        def predict(loop_frame):
+        def predict(loop_frame, debug=None):
 
             height, width = loop_frame.shape[:2]
             x = torch.from_numpy(transform(loop_frame)[0]).permute(2, 0, 1)
@@ -346,8 +335,28 @@ class MyWindow(QMainWindow, Ui_MainWindowASUM):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Single Shot MultiBox Detection")
+    parser.add_argument(
+        "--weights",
+        default="./models/SSD_sections_det.pth",
+        type=str,
+        help="Trained state_dict file path",
+    )
+    parser.add_argument(
+        "--cuda", default=False, type=bool, help="Use cuda in live demo"
+    )
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        default=False,
+        help="Debug when do not have the ASUM device",
+    )
+    args = parser.parse_args()
+    if not args.debug:
+        ser = serial.Serial("/dev/ttyUSB0", 9600, timeout=0.5)  # 使用USB连接串行口
+
     app = QApplication(sys.argv)
-    myWin = MyWindow()
+    myWin = MyWindow(debug=args.debug)
     myWin.show()
 
     sys.exit(app.exec_())
