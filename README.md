@@ -46,9 +46,8 @@ python3 ./Detection_and_control/ASUM-GUI-with-detection-and-control/main-asum-gu
 
 ----
 ## Declare
-The Mechanical design drawings, GUI and the automatic control system of the ASUM can be used only for the
-purpose of academic study
+The Mechanical design drawings, GUI and the automatic control system of the ASUM can be used only for the purpose of academic study
 
 ## Citation
-To be updated, the paper has been submitted to IEEE Transactions on Biomedical Engineering
+To be update, the paper has been accepted by IEEE/CAA Journal of Automatica Sinica (JAS).
 
