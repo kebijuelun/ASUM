@@ -62,5 +62,16 @@ python3 ./Detection_and_control/ASUM-GUI-with-detection-and-control/main-asum-gu
 The Mechanical design drawings, GUI and the automatic control system of the ASUM can be used only for the purpose of academic study
 
 ## Citation
-To be update, the paper has been accepted by IEEE/CAA Journal of Automatica Sinica (JAS).
+```
+@article{cheng2021automated,
+  title={Automated silicon-substrate ultra-microtome for automating the collection of brain sections in array tomography},
+  author={Cheng, Long and Liu, Weizhou and Zhou, Chao and Zou, Yongxiang and Hou, Zeng-Guang},
+  journal={IEEE/CAA Journal of Automatica Sinica},
+  volume={8},
+  number={2},
+  pages={389--401},
+  year={2021},
+  publisher={IEEE}
+}
+```
 
